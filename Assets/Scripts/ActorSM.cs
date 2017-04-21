@@ -10,7 +10,9 @@ public class ActorSM : MonoBehaviour {
 	{
 		movement = GetComponent<ActorMovement>();
 		anim = GetComponent<ActorAnimator>();
+		rb = GetComponent<Rigidbody2D>();
 		groundedCollider = GetComponentInChildren<GroundedCollider>();
+		ledgeCollider = GetComponentInChildren<LedgeCollider>();
 	}
 
 	void FixedUpdate ()
@@ -22,15 +24,19 @@ public class ActorSM : MonoBehaviour {
 	void Update ()
 	{
 		UpdateJump();
+		UpdateOnLedge();
 		UpdateAnimator();
 	}
 
 	// MOVEMENT //
 
+	Rigidbody2D rb;
 	ActorMovement movement;
 
-	public float horizontal;
-	public float vertical;
+	float horizontal;
+	float vertical;
+
+	bool canMove = true;
 
 	public void ReceiveAxisRaw (float _horizontal, float _vertical)
 	{
@@ -42,7 +48,10 @@ public class ActorSM : MonoBehaviour {
 	{
 		if (horizontal != 0 || vertical != 0)
 		{
-			movement.ReceiveAxis(horizontal, vertical);
+			if (canMove)
+			{
+				movement.ReceiveAxis(horizontal, vertical);
+			}
 		}
 	}
 
@@ -90,6 +99,30 @@ public class ActorSM : MonoBehaviour {
 		grounded = groundedCollider.grounded;
 	}
 
+	// LEDGE //
+
+	LedgeCollider ledgeCollider;
+
+	bool onLedge;
+
+	void UpdateOnLedge ()
+	{
+		onLedge = ledgeCollider.onLedge;
+
+		if (onLedge && rb.gravityScale == 1)
+		{
+			canMove = false;
+			rb.velocity = Vector3.zero;
+			rb.gravityScale = 0;
+		}
+
+		if (!onLedge && rb.gravityScale == 0)
+		{
+			canMove = true;
+			rb.gravityScale = 1;
+		}
+	}
+
 	// ANIMATOR //
 
 	ActorAnimator anim;
@@ -98,5 +131,6 @@ public class ActorSM : MonoBehaviour {
 	{
 		anim.ReceiveAxis(horizontal, vertical);
 		anim.ReceiveGrounded(grounded);
+		anim.ReceiveOnLedge(onLedge);
 	}
 }
