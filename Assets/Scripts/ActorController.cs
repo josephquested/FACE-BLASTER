@@ -27,8 +27,8 @@ public class ActorController : MonoBehaviour {
 
 	void Update ()
 	{
-		UpdateGrounded();
 		UpdateJump();
+		UpdateGrounded();
 		UpdateLedgeController();
 		UpdateAnimator();
 	}
@@ -76,21 +76,14 @@ public class ActorController : MonoBehaviour {
 	float horizontal;
 	float vertical;
 
-	bool moving;
-
 	void UpdateMovement ()
 	{
 		if (horizontal != 0 || vertical != 0)
 		{
 			if (CanMove())
 			{
-				moving = true;
 				actorMovement.ReceiveAxis(horizontal, vertical);
 			}
-		}
-		else
-		{
-			moving = false;
 		}
 	}
 

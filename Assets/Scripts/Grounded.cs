@@ -22,6 +22,7 @@ public class Grounded : MonoBehaviour {
 	{
 		if (collider.gameObject.layer == 8 && isGrounded)
 		{
+			print("left trigger!");
 			isGrounded = false;
 		}
 	}
