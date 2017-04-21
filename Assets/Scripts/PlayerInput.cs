@@ -13,9 +13,10 @@ public class PlayerInput : MonoBehaviour {
 		actorSM = GetComponent<ActorSM>();
 	}
 
-	void Update ()
+	void FixedUpdate ()
 	{
 		UpdateAxisRaw();
+		UpdateJump();
 	}
 
 	// MOVEMENT //
@@ -23,5 +24,12 @@ public class PlayerInput : MonoBehaviour {
 	void UpdateAxisRaw ()
 	{
 		actorSM.ReceiveAxisRaw(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+	}
+
+	// JUMP //
+
+	void UpdateJump ()
+	{
+		actorSM.ReceiveJump(Input.GetButton("Jump"));
 	}
 }

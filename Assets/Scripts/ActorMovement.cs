@@ -17,7 +17,7 @@ public class ActorMovement : MonoBehaviour {
 
 	public float speed;
 
-	public void ReceiveInput (float horizontal, float vertical)
+	public void ReceiveAxis (float horizontal, float vertical)
 	{
 		Vector2 movement = GetMovement(horizontal, vertical);
 		Move(movement);
@@ -31,5 +31,25 @@ public class ActorMovement : MonoBehaviour {
 	void Move (Vector2 movement)
 	{
 		rb.AddForce(movement * speed, ForceMode2D.Impulse);
+	}
+
+	// JUMP //
+
+	public float jumpForce;
+
+	public void ReceiveJump ()
+	{
+		Vector2 jump = GetJump();
+		Jump(jump);
+	}
+
+	Vector2 GetJump ()
+	{
+		return new Vector3(0, jumpForce);
+	}
+
+	public void Jump (Vector2 jump)
+	{
+		rb.AddForce(jump, ForceMode2D.Impulse);
 	}
 }

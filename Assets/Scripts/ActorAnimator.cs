@@ -15,8 +15,13 @@ public class ActorAnimator : MonoBehaviour {
 
 	// MOVEMENT //
 
-	public void ReceiveInput (float horizontal, float vertical)
+	public void ReceiveAxis (float horizontal, float vertical)
 	{
 		anim.SetBool("Moving", horizontal != 0);
+	}
+
+	public void ReceiveGrounded (bool grounded)
+	{
+		anim.SetBool("Airborne", !grounded);
 	}
 }
