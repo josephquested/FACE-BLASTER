@@ -10,7 +10,7 @@ public class LedgeTrigger : MonoBehaviour {
 
 	// LEDGE //
 
-	public void ForceDrop ()
+	public void Drop ()
 	{
 		atLedge = false;
 	}

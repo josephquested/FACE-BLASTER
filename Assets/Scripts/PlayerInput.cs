@@ -6,16 +6,16 @@ public class PlayerInput : MonoBehaviour {
 
 	// SYSTEM //
 
-	ActorSM actorSM;
+	ActorController actor;
 
 	void Start ()
 	{
-		actorSM = GetComponent<ActorSM>();
+		actor = GetComponent<ActorController>();
 	}
 
 	void FixedUpdate ()
 	{
-		UpdateAxisRaw();
+		UpdateAxis();
 	}
 
 	void Update ()
@@ -25,15 +25,15 @@ public class PlayerInput : MonoBehaviour {
 
 	// MOVEMENT //
 
-	void UpdateAxisRaw ()
+	void UpdateAxis ()
 	{
-		actorSM.ReceiveAxisRaw(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		actor.ReceiveAxis(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 	}
 
 	// JUMP //
 
 	void UpdateJump ()
 	{
-		actorSM.ReceiveJump(Input.GetButton("Jump"), Input.GetButtonDown("Jump"));
+		actor.ReceiveJump(Input.GetButton("Jump"), Input.GetButtonDown("Jump"));
 	}
 }

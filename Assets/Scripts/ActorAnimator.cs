@@ -22,9 +22,9 @@ public class ActorAnimator : MonoBehaviour {
 		anim.SetBool("Moving", horizontal != 0 && !atLedge);
 	}
 
-	public void ReceiveGrounded (bool grounded)
+	public void ReceiveGrounded (bool isGrounded)
 	{
-		anim.SetBool("Airborne", !grounded);
+		anim.SetBool("Airborne", !isGrounded);
 	}
 
 	public void ReceiveAtLedge (bool _atLedge)
