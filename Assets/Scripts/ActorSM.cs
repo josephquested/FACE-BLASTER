@@ -9,8 +9,8 @@ public class ActorSM : MonoBehaviour {
 	void Start ()
 	{
 		movement = GetComponent<ActorMovement>();
-		actorGrounded = GetComponent<ActorGrounded>();
 		anim = GetComponent<ActorAnimator>();
+		groundedCollider = GetComponentInChildren<GroundedCollider>();
 	}
 
 	void FixedUpdate ()
@@ -81,13 +81,13 @@ public class ActorSM : MonoBehaviour {
 
 	// GROUNDED //
 
-	ActorGrounded actorGrounded;
+	GroundedCollider groundedCollider;
 
 	bool grounded;
 
 	void UpdateGrounded ()
 	{
-		grounded = actorGrounded.grounded;
+		grounded = groundedCollider.grounded;
 	}
 
 	// ANIMATOR //
