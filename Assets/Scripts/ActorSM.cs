@@ -126,5 +126,6 @@ public class ActorSM : MonoBehaviour {
 	{
 		anim.ReceiveAxis(horizontal, vertical);
 		anim.ReceiveGrounded(grounded);
+		anim.ReceiveAtLedge(ledgeTrigger.atLedge);
 	}
 }

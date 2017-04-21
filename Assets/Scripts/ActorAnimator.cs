@@ -15,13 +15,20 @@ public class ActorAnimator : MonoBehaviour {
 
 	// MOVEMENT //
 
+	bool atLedge;
+
 	public void ReceiveAxis (float horizontal, float vertical)
 	{
-		anim.SetBool("Moving", horizontal != 0);
+		anim.SetBool("Moving", horizontal != 0 && !atLedge);
 	}
 
 	public void ReceiveGrounded (bool grounded)
 	{
 		anim.SetBool("Airborne", !grounded);
+	}
+
+	public void ReceiveAtLedge (bool _atLedge)
+	{
+		atLedge = _atLedge;
 	}
 }
