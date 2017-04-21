@@ -36,6 +36,9 @@ public class ActorMovement : MonoBehaviour {
 	// JUMP //
 
 	public float jumpForce;
+	public float jumpMax;
+
+	float jumpCurrent = 0;
 
 	public void ReceiveJump ()
 	{
@@ -43,13 +46,22 @@ public class ActorMovement : MonoBehaviour {
 		Jump(jump);
 	}
 
+	public void StopJump ()
+	{
+		jumpCurrent = 0;
+	}
+
 	Vector2 GetJump ()
 	{
 		return new Vector3(0, jumpForce);
 	}
 
-	public void Jump (Vector2 jump)
+	void Jump (Vector2 jump)
 	{
-		rb.AddForce(jump, ForceMode2D.Impulse);
+		jumpCurrent += 0.1f;
+		if (jumpCurrent < jumpMax)
+		{
+			rb.AddForce(jump, ForceMode2D.Impulse);
+		}
 	}
 }

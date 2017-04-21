@@ -63,7 +63,19 @@ public class ActorSM : MonoBehaviour {
 	{
 		if (grounded && jumpDown)
 		{
-			movement.ReceiveJump();
+			jumping = true;
+		}
+		if (jumping)
+		{
+			if (jump)
+			{
+				movement.ReceiveJump();
+			}
+			else
+			{
+				movement.StopJump();
+				jumping = false;
+			}
 		}
 	}
 
