@@ -24,9 +24,4 @@ public class ActorAnimator : MonoBehaviour {
 	{
 		anim.SetBool("Airborne", !grounded);
 	}
-
-	public void ReceiveOnLedge (bool onLedge)
-	{
-		anim.SetBool("Ledge", onLedge);
-	}
 }

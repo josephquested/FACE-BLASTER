@@ -27,7 +27,7 @@ public class PlayerInput : MonoBehaviour {
 
 	void UpdateAxisRaw ()
 	{
-		actorSM.ReceiveAxisRaw(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+		actorSM.ReceiveAxisRaw(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 	}
 
 	// JUMP //

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActorFaceCursor : MonoBehaviour {
+public class ActorFacing : MonoBehaviour {
 
 	// SYSTEM //
 
@@ -15,7 +15,7 @@ public class ActorFaceCursor : MonoBehaviour {
 	{
 		UpdateFacing();
 		UpdateRenderer();
-		UpdateLedgeCollider();
+		UpdateLedgeController();
 	}
 
 	// FACING //
@@ -39,17 +39,17 @@ public class ActorFaceCursor : MonoBehaviour {
 
 	// LEDGE COLLIDER //
 
-	public Transform ledgeColliderTransform;
+	public Transform ledgeControllerTrans;
 
-	void UpdateLedgeCollider ()
+	void UpdateLedgeController ()
 	{
 		if (facingLeft)
 		{
-			ledgeColliderTransform.eulerAngles = new Vector3(0, 180, 0);
+			ledgeControllerTrans.eulerAngles = new Vector3(0, 180, 0);
 		}
 		else
 		{
-			ledgeColliderTransform.eulerAngles = new Vector3(0, 0, 0);
+			ledgeControllerTrans.eulerAngles = new Vector3(0, 0, 0);
 		}
 	}
 

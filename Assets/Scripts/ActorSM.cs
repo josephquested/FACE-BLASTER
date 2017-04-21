@@ -12,7 +12,7 @@ public class ActorSM : MonoBehaviour {
 		anim = GetComponent<ActorAnimator>();
 		rb = GetComponent<Rigidbody2D>();
 		groundedCollider = GetComponentInChildren<GroundedCollider>();
-		ledgeCollider = GetComponentInChildren<LedgeCollider>();
+		ledgeTrigger = GetComponentInChildren<LedgeTrigger>();
 	}
 
 	void FixedUpdate ()
@@ -24,7 +24,8 @@ public class ActorSM : MonoBehaviour {
 	void Update ()
 	{
 		UpdateJump();
-		UpdateOnLedge();
+		UpdateAtLedge();
+		UpdateLedgeDrop();
 		UpdateAnimator();
 	}
 
@@ -101,25 +102,19 @@ public class ActorSM : MonoBehaviour {
 
 	// LEDGE //
 
-	LedgeCollider ledgeCollider;
+	public GameObject handCollider;
+	LedgeTrigger ledgeTrigger;
 
-	bool onLedge;
-
-	void UpdateOnLedge ()
+	void UpdateAtLedge ()
 	{
-		onLedge = ledgeCollider.onLedge;
+		handCollider.SetActive(ledgeTrigger.atLedge);
+	}
 
-		if (onLedge && rb.gravityScale == 1)
+	void UpdateLedgeDrop ()
+	{
+		if (vertical < 0)
 		{
-			canMove = false;
-			rb.velocity = Vector3.zero;
-			rb.gravityScale = 0;
-		}
-
-		if (!onLedge && rb.gravityScale == 0)
-		{
-			canMove = true;
-			rb.gravityScale = 1;
+			ledgeTrigger.ForceDrop();
 		}
 	}
 
@@ -131,6 +126,5 @@ public class ActorSM : MonoBehaviour {
 	{
 		anim.ReceiveAxis(horizontal, vertical);
 		anim.ReceiveGrounded(grounded);
-		anim.ReceiveOnLedge(onLedge);
 	}
 }
