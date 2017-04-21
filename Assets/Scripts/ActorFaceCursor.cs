@@ -13,7 +13,19 @@ public class ActorFaceCursor : MonoBehaviour {
 
 	void Update ()
 	{
+		UpdateFacing();
 		UpdateRenderer();
+		UpdateLedgeCollider();
+	}
+
+	// FACING //
+
+	public bool facingLeft;
+
+	void UpdateFacing ()
+	{
+		Vector2 mousePos = GetMousePosition();
+		facingLeft = mousePos.x < transform.position.x;
 	}
 
 	// RENDERER //
@@ -22,8 +34,23 @@ public class ActorFaceCursor : MonoBehaviour {
 
 	void UpdateRenderer ()
 	{
-		Vector2 mousePos = GetMousePosition();
-		spriteRenderer.flipX = mousePos.x < transform.position.x;
+		spriteRenderer.flipX = facingLeft;
+	}
+
+	// LEDGE COLLIDER //
+
+	public Transform ledgeColliderTransform;
+
+	void UpdateLedgeCollider ()
+	{
+		if (facingLeft)
+		{
+			ledgeColliderTransform.eulerAngles = new Vector3(0, 180, 0);
+		}
+		else
+		{
+			ledgeColliderTransform.eulerAngles = new Vector3(0, 0, 0);
+		}
 	}
 
 	// CURSOR //
