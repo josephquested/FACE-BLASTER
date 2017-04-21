@@ -16,6 +16,10 @@ public class PlayerInput : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		UpdateAxisRaw();
+	}
+
+	void Update ()
+	{
 		UpdateJump();
 	}
 
@@ -30,6 +34,6 @@ public class PlayerInput : MonoBehaviour {
 
 	void UpdateJump ()
 	{
-		actorSM.ReceiveJump(Input.GetButton("Jump"));
+		actorSM.ReceiveJump(Input.GetButton("Jump"), Input.GetButtonDown("Jump"));
 	}
 }

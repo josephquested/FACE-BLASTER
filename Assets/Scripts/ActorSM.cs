@@ -16,12 +16,12 @@ public class ActorSM : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		UpdateMovement();
-		UpdateJump();
 		UpdateGrounded();
 	}
 
 	void Update ()
 	{
+		UpdateJump();
 		UpdateAnimator();
 	}
 
@@ -49,16 +49,19 @@ public class ActorSM : MonoBehaviour {
 	// JUMP //
 
 	bool jump;
+	bool jumpDown;
+
 	bool jumping;
 
-	public void ReceiveJump (bool _jump)
+	public void ReceiveJump (bool _jump, bool _jumpDown)
 	{
 		jump = _jump;
+		jumpDown = _jumpDown;
 	}
 
 	void UpdateJump ()
 	{
-		if (grounded && jump)
+		if (grounded && jumpDown)
 		{
 			movement.ReceiveJump();
 		}
