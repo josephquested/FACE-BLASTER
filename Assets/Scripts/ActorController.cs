@@ -13,9 +13,10 @@ public class ActorController : MonoBehaviour {
 
 	void Start ()
 	{
-		movement = GetComponent<ActorMovement>();
-		grounded = GetComponentInChildren<Grounded>();
+		actorMovement = GetComponent<ActorMovement>();
+		actorJump = GetComponent<ActorJump>();
 		actorAnim = GetComponent<ActorAnimator>();
+		grounded = GetComponentInChildren<Grounded>();
 		ledgeTrigger = GetComponentInChildren<LedgeTrigger>();
 	}
 
@@ -70,7 +71,7 @@ public class ActorController : MonoBehaviour {
 
 	// MOVEMENT //
 
-	ActorMovement movement;
+	ActorMovement actorMovement;
 
 	float horizontal;
 	float vertical;
@@ -84,7 +85,7 @@ public class ActorController : MonoBehaviour {
 			if (CanMove())
 			{
 				moving = true;
-				movement.ReceiveAxis(horizontal, vertical);
+				actorMovement.ReceiveAxis(horizontal, vertical);
 			}
 		}
 		else
@@ -101,9 +102,10 @@ public class ActorController : MonoBehaviour {
 
 	// JUMP //
 
+	ActorJump actorJump;
+
 	bool jump;
 	bool jumpDown;
-
 	bool jumping;
 
 	void UpdateJump ()
@@ -116,11 +118,11 @@ public class ActorController : MonoBehaviour {
 		{
 			if (jump)
 			{
-				movement.ReceiveJump();
+				actorJump.ReceiveJump();
 			}
 			else
 			{
-				movement.StopJump();
+				actorJump.StopJump();
 				jumping = false;
 			}
 		}

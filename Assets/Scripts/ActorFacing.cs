@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Facing { Left, Right };
-
 public class ActorFacing : MonoBehaviour {
-
-	public Facing facing = Facing.Right;
 
 	// SYSTEM //
 
@@ -24,7 +20,7 @@ public class ActorFacing : MonoBehaviour {
 
 	// FACING //
 
-	public bool facingLeft;
+	bool facingLeft;
 
 	void UpdateFacing ()
 	{
