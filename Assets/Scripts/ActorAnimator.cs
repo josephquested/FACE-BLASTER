@@ -24,6 +24,7 @@ public class ActorAnimator : MonoBehaviour {
 
 	public void ReceiveGrounded (bool isGrounded)
 	{
+		// anim.SetBool("Airborne", rb.velocity.y != 0);
 		anim.SetBool("Airborne", !isGrounded);
 	}
 

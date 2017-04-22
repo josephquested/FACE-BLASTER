@@ -10,6 +10,14 @@ public class Grounded : MonoBehaviour {
 
 	// TRIGGERS //
 
+	void OnTriggerEnter2D (Collider2D collider)
+	{
+		if (collider.gameObject.layer == 8 && !isGrounded)
+		{
+			isGrounded = true;
+		}
+	}
+
 	void OnTriggerStay2D (Collider2D collider)
 	{
 		if (collider.gameObject.layer == 8 && !isGrounded)

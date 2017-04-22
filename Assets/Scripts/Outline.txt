@@ -1,0 +1,5 @@
+FACE SHOOTER
+a game about swapping faces and shooting faces.
+
+every enemy drops a face when they die.
+different faces have different powers and attacks.
